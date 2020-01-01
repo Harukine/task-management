@@ -1,4 +1,14 @@
+### Get all tasks
 GET http://localhost:3000/tasks
 Accept: application/json
+
+###
+POST http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+  "title": "Test Title",
+  "description": "Test Description"
+}
 
 ###
