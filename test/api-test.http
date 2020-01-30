@@ -12,3 +12,15 @@ Content-Type: application/json
 }
 
 ###
+PATCH http://localhost:3000/tasks/724cbda0-4309-11ea-a0f4-a55d4f9fe70b/status
+Content-Type: application/json
+
+{
+  "status": "OPEN"
+}
+
+###
+
+GET http://localhost:3000/tasks?status=OPEN
+
+###
