@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Task, TaskStatus } from './task.entity';
-import * as uuid from 'uuid/v1';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
 import { TaskRepository } from './task.repository';
@@ -45,17 +44,16 @@ export class TasksService {
     return found;
   }
 
-  createTask(createTaskDto: CreateTaskDto): Task {
+  async createTask(createTaskDto: CreateTaskDto): Promise<Task> {
     const { title, description } = createTaskDto;
-    const task = {
-      id: uuid(),
-      title,
-      description,
-      status: TaskStatus.OPEN,
-    };
 
-    this.tasks.push(task);
-    return task as Task;
+    const task = new Task();
+    task.title = title;
+    task.description = description;
+    task.status = TaskStatus.OPEN;
+    await task.save();
+
+    return task;
   }
 
   async deleteTask(id: number): Promise<void> {
