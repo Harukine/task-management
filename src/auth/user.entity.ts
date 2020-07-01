@@ -13,4 +13,6 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
+  @Column()
+  salt: string;
 }
