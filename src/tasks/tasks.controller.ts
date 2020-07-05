@@ -48,6 +48,7 @@ export class TasksController {
   updateTaskStatus(
     @Param('id', ParseIntPipe)id: number,
     @Body('status', TaskStatusValidationPipe) status: TaskStatus,
+    @GetUser() user: User,
   ) {
     return this.tasksService.updateTaskStatus(id, status);
   }
